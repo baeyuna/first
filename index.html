@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="utf-8">
+    <title>1탄!</title>
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+    <style>
+       #box1 { width:900px; margin:auto; }
+.textBubble{ height:25px; background:#F361A6; border-radius:6px; position: relative; float:left; margin:5px; line-height: 25px; padding: 5px; color:white;}
+.textBubble:hover{ background: white; color:#F361A6; cursor:pointer; font-weight: bold; }
+#textContainer:after{ content: "";display: block; clear: both; }
+#disp{height:50px; text-align:center; color:#99004C;  font-size:1.1em; font-weight:bold; padding-top: 100px;}
+#disp2{text-align: center; height:100px; line-height: 100px; font-size:3em; font-weight: bold; background: pink; color:white;margin-top: 30px;}
+/*------------------------------------------------------*/
+#runningMan{width:500px; position: absolute; top:300px; left:-400px; animation: run 10s;  animation-delay: 2s;}
+@keyframes run{
+            from{margin-left:-400px;}
+            to{margin-left:1800px;}
+            }
+#loading{position: absolute; top: 150px; left: 600px; color:black;
+        font-size: 1.5em; font-weight: bold; animation: down 10s forwards;}
+@keyframes down{
+            from{margin-top:-200px;}
+            to{margin-top:0px;}
+
+.onet{height:50px; position: absolute; left: 700px; color: black; font-size:1.5em; font-weight: bold; animation: two 1s forwards; opacity: 0; transition: all 1s;}
+        .onet:hover{font-size: 2em;}
+        @keyframes two{
+        from{opacity: 0;}to{opacity:100;}}
+
+        .m0{height:50px; position: absolute; left: 700px; color: black; font-size:1.5em; font-weight: bold; animation: two 1s forwards; opacity: 0; transition: all 1s;}
+        .m0:hover{font-size: 2em;}
+        @keyframes two{
+        from{opacity: 0;}to{opacity:100;}}
+#company{width:10px; position: absolute; top: 300px; left: 600px;}
+</style>
+</head>
+    
+<body>
+    <div id="box1">
+    <div id="disp"></div>
+    <div id="textBase"></div>
+    <div id="textContainer"></div>
+    <div id="disp2"></div>
+    </div>
+    <img src="./img/man.gif" id="runningMan">
+    <div id="loading">서류가지고 면접보러가는중~</div>
+    <div id="one"></div>
+    <div id="oneCon"></div>
+    <img src="./img/company.png" id="company">
+   <script type="text/javascript">
+    var text="사랑 아르바이트 을 했다 박사학위 자소서 우리 가 만나 지우지이 못할 추억 자격증 이 됐다 볼만 한 멜로 한국사 드라마아 토익 괜찮으은 토플 면접준비 일본어 결말 정장구매 공모전 어학연수 그거며언 워킹홀리데이 됐다 인턴 널 사랑했다 외국어 우리가만든 학점4.0 LOVE JAVA SCRIPT SCENARIO 오픽 이젠 컴활 조오명이 중국어 PT연습 꺼지이고 인적성 동아리 유학 대외활동 마지마악 봉사 면허증 경력 토스 상식 독서 페이지를 넘기 석사학위 스터디 영어면접준비 학위 면 조용 신문읽기 히 기자단 텝스 막을 내리 수상경력 죠";
+
+    var p = text.split(" ");
+    var c = document.getElementById("textBase");
+    var displayText = "3글자로 된 스펙만 준비한 민수쒸";
+    var tNumber = 0;
+
+    for(var i=0; i < p.length; i++){
+        var d = c.cloneNode(true);
+
+        if(p[i].length == 3){ tNumber++; };
+
+        d.innerHTML = p[i];
+        d.className = "textBubble";
+        d.id = "a" + i;
+        d.onclick = function(){
+            if(this.innerHTML.length == 3){
+                displayText += this.innerHTML + ", ";
+                disp.innerHTML = displayText;
+                textContainer.removeChild(document.getElementById(this.id));
+                tNumber --;
+                if(tNumber == 0){
+                    disp2.innerHTML = "준비를 마쳤다!! 면접보러 가자!!";
+                    clearInterval(k);
+                }else{
+                    disp2.innerHTML = "그건 준비했다!";    
+                }
+            }else{
+                disp2.innerHTML = "아..그건 못했는데...;;";
+            }
+        }
+
+        textContainer.appendChild(d);   
+    }
+    var time = 0;
+    disp.innerHTML = displayText;
+
+     var text2 = "면접보는중";
+        var j = text2.split(" ");
+        
+        for(var i=0; i<j.length; i++){
+            var f = document .getElementById("one");
+            var g = f.cloneNode(true);
+            g.className = "onet"
+            g.id = "m"+i;
+            g.innerHTML = j[i];
+            g.style.top = 150+ 30*i +"px";
+            g.style.animationDelay = i*0.5 +"s";
+            g.style.animationIterationCount = "infinite";
+            oneCon.appendChild(g);
+            }
+
+    document.getElementById("runningMan").style.visibility = "hidden";
+    document.getElementById("loading").style.visibility = "hidden";
+    document.getElementById("m0").style.visibility = "hidden";
+    document.getElementById("company").style.visibility = "hidden";
+    disp2.onclick = function(){
+        document.getElementById("box1").style.visibility = "hidden";
+        document.getElementById("runningMan").style.visibility = "visible";
+        document.getElementById("loading").style.visibility = "visible";
+        document.getElementById("company").style.visibility = "visible";
+     };
+/*--------------------------------------------1----------------------------------------------*/
+   loading.onclick = function(){
+        document.getElementById("runningMan").style.visibility = "hidden";
+        document.getElementById("loading").style.visibility = "hidden";
+         document.getElementById("m0").style.visibility = "visible";
+     };
+        m0.onclick = function(){
+        document.getElementById("m0").style.visibility = "hidden";}
+ </script>
+</body>
+</html>
